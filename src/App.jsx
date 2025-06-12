@@ -8,7 +8,7 @@ function App() {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* First Segment: Text Left, Image Right */}
+      
       <div className="flex items-center p-0 md:p-0 bg-black justify-between h-full">
         <div className="flex-1 px-6 text-center">
           <p className="text-white text-4xl font-bold">Join Clubs</p>
@@ -18,7 +18,6 @@ function App() {
         <img src={act_1} alt="activity image 1" className="h-auto object-cover" />
       </div>
 
-      {/* Second Segment: Image Left, Text Right */}
       <div className="flex items-center p-0 md:p-0 bg-gray-400 justify-between h-full">
         <img src={act_2} alt="activity image 2" className="h-auto object-cover" />
         <div className="flex-1 px-6 text-center">
@@ -27,7 +26,6 @@ function App() {
         </div>
       </div>
 
-      {/* Third Segment: Why Join Clubs */}
       <div className="p-0 md:p-0 bg-black" style={{ minHeight: '300px' }}>
         <br />
         <p className="text-white text-4xl font-bold text-center  mb-20">Why Join Clubs</p>
