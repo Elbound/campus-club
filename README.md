@@ -24,3 +24,5 @@ A React-based website for managing campus clubs, featuring a home page, about pa
     ```
 4. **Open in Browser**;
     Visit http://localhost:5173
+
+    

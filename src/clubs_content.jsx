@@ -43,15 +43,39 @@ function ClubsContent() {
         {sortedClubs.map((club) => (
           <li
             key={club.id}
-            className={`bg-white p-4 rounded-lg shadow-md ${viewStyle === 'list' ? 'flex justify-between items-center' : ''}`}
+            className={`bg-white p-4 rounded-lg shadow-md ${
+              viewStyle === 'list' ? 'flex justify-between items-center' : 'flex flex-col h-full justify-between'
+            }`}
           >
-            <div>
-              <h2 className="text-xl font-semibold">{club.name}</h2>
-              <p className="text-gray-600 mt-2">{club.shortDescription}</p>
-            </div>
-            <Link to={`/clubs/${club.id}`} className="ml-4 bg-cyan-500 text-white px-2 py-1 rounded hover:bg-cyan-600">
-              See Detail
-            </Link>
+            {viewStyle === 'list' ? (
+              <>
+                <div className="flex items-center space-x-4">
+                  <img src={club.image} alt={club.name} className="w-16 h-16 object-cover rounded" />
+                  <div>
+                    <h2 className="text-xl font-semibold">{club.name}</h2>
+                    <p className="text-gray-600 mt-2">{club.shortDescription}</p>
+                  </div>
+                </div>
+                <Link to={`/clubs/${club.id}`} className="ml-4 bg-cyan-500 text-white px-2 py-1 rounded hover:bg-cyan-600">
+                  View Details
+                </Link>
+              </>
+            ) : (
+              <>
+                <div className="flex flex-col items-center space-y-4">
+                  <img src={club.image} alt={club.name} className="w-24 h-24 object-cover rounded" />
+                  <div className="text-center">
+                    <h2 className="text-xl font-semibold">{club.name}</h2>
+                    <p className="text-gray-600 mt-2">{club.shortDescription}</p>
+                  </div>
+                </div>
+                <div className="mt-4">
+                  <Link to={`/clubs/${club.id}`} className="bg-cyan-500 text-white px-4 py-2 rounded hover:bg-cyan-600 block text-center">
+                    View Details
+                  </Link>
+                </div>
+              </>
+            )}
           </li>
         ))}
       </ul>
