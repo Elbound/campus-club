@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react';
 import { clubs as rawClubs } from './club_data.js';
-import { Link } from 'react-router-dom'; // Placeholder for future routing
+import { Link } from 'react-router-dom';
 
 function ClubsContent() {
   const [sortedClubs, setSortedClubs] = useState([]);
   const [isAscending, setIsAscending] = useState(true);
-  const [viewStyle, setViewStyle] = useState('card'); // 'card' or 'list'
+  const [viewStyle, setViewStyle] = useState('card');
 
   useEffect(() => {
     const sorted = [...rawClubs].sort((a, b) => 
@@ -49,7 +49,7 @@ function ClubsContent() {
               <h2 className="text-xl font-semibold">{club.name}</h2>
               <p className="text-gray-600 mt-2">{club.shortDescription}</p>
             </div>
-            <Link to={`/clubs/1`} className="ml-4 bg-cyan-500 text-white px-2 py-1 rounded hover:bg-cyan-600">
+            <Link to={`/clubs/${club.id}`} className="ml-4 bg-cyan-500 text-white px-2 py-1 rounded hover:bg-cyan-600">
               See Detail
             </Link>
           </li>

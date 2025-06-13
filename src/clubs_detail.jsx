@@ -1,27 +1,34 @@
 import { useState, useEffect } from 'react';
 import { clubs as rawClubs } from './club_data.js';
+import { useParams } from 'react-router-dom';
 
 function ClubDetail() {
-  const club = rawClubs[1]; // Hardcoded to index 1 (Photography Club)
+  const { clubId } = useParams();
+  const club = rawClubs.find(c => c.id === clubId);
   const [isJoined, setIsJoined] = useState(false);
 
   useEffect(() => {
-    // Check localStorage for joined status
     const joinedClubs = JSON.parse(localStorage.getItem('joinedClubs')) || [];
-    setIsJoined(joinedClubs.includes(club.id));
-  }, [club.id]);
+    setIsJoined(joinedClubs.includes(club?.id));
+  }, [club?.id]);
 
   const handleJoinClub = () => {
-    let joinedClubs = JSON.parse(localStorage.getItem('joinedClubs')) || [];
-    if (!joinedClubs.includes(club.id)) {
-      joinedClubs.push(club.id);
-      localStorage.setItem('joinedClubs', JSON.stringify(joinedClubs));
-      setIsJoined(true);
-      alert('You have joined ' + club.name + '!');
+    if (club) {
+      let joinedClubs = JSON.parse(localStorage.getItem('joinedClubs')) || [];
+      if (!joinedClubs.includes(club.id)) {
+        joinedClubs.push(club.id);
+        localStorage.setItem('joinedClubs', JSON.stringify(joinedClubs));
+        setIsJoined(true);
+        alert('You have joined ' + club.name + '!');
+      }
     }
   };
 
-  const upcomingEvents = club.events.slice(0, 2); // Ensure at least 2 events
+  const upcomingEvents = club?.events.slice(0, 2) || [];
+
+  if (!club) {
+    return <div>Club not found</div>; // Fallback if clubId is invalid
+  }
 
   return (
     <div className="min-h-screen bg-gray-50 p-6">
